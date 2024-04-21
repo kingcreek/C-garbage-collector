@@ -11,16 +11,18 @@
 /* ************************************************************************** */
 
 #include "garbage.h"
-///////TEST//////
 
 int main() {
     gc_init();
 
-    // Malloc used to alloc memory, 
     int *ptr1 = gc_malloc(sizeof(int));
+    if (!ptr1)
+        return EXIT_FAILURE;
     *ptr1 = 10;
 
     float *ptr2 = gc_malloc(sizeof(float));
+    if (!ptr2)
+        return EXIT_FAILURE;
     *ptr2 = 3.14;
 
     printf("Valor de ptr1: %d\n", *ptr1);
@@ -29,5 +31,5 @@ int main() {
     // Free mem
     gc_free();
 
-    return 0;
+    return EXIT_SUCCESS;
 }
