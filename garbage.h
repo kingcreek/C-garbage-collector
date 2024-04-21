@@ -6,7 +6,7 @@
 /*   By: imurugar <imurugar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 09:26:17 by imurugar          #+#    #+#             */
-/*   Updated: 2024/04/21 10:46:42 by imurugar         ###   ########.fr       */
+/*   Updated: 2024/04/21 13:42:56 by imurugar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,15 @@ typedef struct {
     Node *head;
 } GarbageCollector;
 
-Node	*createNode(void *ptr, int size);
-void	gc_init(GarbageCollector *gc);
-void	*gc_malloc(GarbageCollector *gc, size_t size);
-void	gc_free(GarbageCollector *gc);
 
+// Malloc real func
+extern void *__libc_malloc(size_t size);
+
+// Functions
+void				*gc_malloc(size_t size);
+Node				*create_node(void *ptr, int size);
+GarbageCollector	*get_gb(void);
+void				gc_init(void);
+void				gc_free(void);
 
 #endif
