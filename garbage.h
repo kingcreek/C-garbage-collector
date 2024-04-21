@@ -11,29 +11,25 @@
 /* ************************************************************************** */
 
 #ifndef GARBAGE_H
-#define GARBAGE_H
+# define GARBAGE_H
 
-#include <stdio.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <stdlib.h>
 
-typedef struct Node {
-    void *ptr;
-    int size;
-    struct Node *next;
-} Node;
+typedef struct s_Node {
+	void			*ptr;
+	int				size;
+	struct s_Node	*next;
+}	t_Node;
 
-typedef struct {
-    Node *head;
-} GarbageCollector;
-
-
-// Malloc real func
-extern void *__libc_malloc(size_t size);
+typedef struct s_GarbageCollector{
+	t_Node	*head;
+}	t_GarbageCollector;
 
 // Functions
 void				*gc_malloc(size_t size);
-Node				*create_node(void *ptr, int size);
-GarbageCollector	*get_gb(void);
+t_Node				*create_node(void *ptr, int size);
+t_GarbageCollector	*get_gb(void);
 void				gc_init(void);
 void				gc_free(void);
 

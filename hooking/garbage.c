@@ -6,7 +6,7 @@
 /*   By: imurugar <imurugar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:10:35 by imurugar          #+#    #+#             */
-/*   Updated: 2024/04/21 15:10:38 by imurugar         ###   ########.fr       */
+/*   Updated: 2024/04/21 15:28:10 by imurugar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*my_malloc_hook(size_t size, void *caller)
 {
 	void	*ptr;
-	Node	*node;
+	t_Node	*node;
 
 	ptr = malloc(size);
 	if (ptr == NULL)
@@ -47,11 +47,11 @@ void	*malloc(size_t size)
 	return (__libc_malloc(size));
 }
 
-Node	*create_node(void *ptr, int size)
+t_Node	*create_node(void *ptr, int size)
 {
-	Node	*node;
+	t_Node	*node;
 
-	node = __libc_malloc(sizeof(Node));
+	node = __libc_malloc(sizeof(t_Node));
 	if (node == NULL)
 		return (NULL);
 	node->ptr = ptr;
@@ -60,9 +60,9 @@ Node	*create_node(void *ptr, int size)
 	return (node);
 }
 
-GarbageCollector	*get_gb(void)
+t_GarbageCollector	*get_gb(void)
 {
-	static GarbageCollector gc = {0};
+	static t_GarbageCollector gc = {0};
 	return (&gc);
 }
 
@@ -73,7 +73,7 @@ void	gc_init(void)
 
 void	gc_free(void)
 {
-	Node *temp;
+	t_Node *temp;
 
 	while (get_gb()->head != NULL)
 	{

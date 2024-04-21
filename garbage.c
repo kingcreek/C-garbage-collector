@@ -15,7 +15,7 @@
 void	*gc_malloc(size_t size)
 {
 	void	*ptr;
-	Node	*node;
+	t_Node	*node;
 
 	ptr = malloc(size);
 	if (ptr == NULL)
@@ -28,11 +28,11 @@ void	*gc_malloc(size_t size)
 	return (ptr);
 }
 
-Node	*create_node(void *ptr, int size)
+struct s_Node	*create_node(void *ptr, int size)
 {
-	Node	*node;
+	t_Node	*node;
 
-	node = malloc(sizeof(Node));
+	node = malloc(sizeof(t_Node));
 	if (node == NULL)
 		return (NULL);
 	node->ptr = ptr;
@@ -41,9 +41,10 @@ Node	*create_node(void *ptr, int size)
 	return (node);
 }
 
-GarbageCollector	*get_gb(void)
+t_GarbageCollector	*get_gb(void)
 {
-	static GarbageCollector gc = {0};
+	static t_GarbageCollector	gc = {0};
+
 	return (&gc);
 }
 
@@ -54,7 +55,7 @@ void	gc_init(void)
 
 void	gc_free(void)
 {
-	Node *temp;
+	t_Node	*temp;
 
 	while (get_gb()->head != NULL)
 	{
