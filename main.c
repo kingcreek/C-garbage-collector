@@ -12,9 +12,18 @@
 
 #include "garbage.h"
 
-int main() {
-    gc_init();
+void test()
+{
+    int *ptr1 = gc_malloc(sizeof(int));
+    if (!ptr1)
+        return;
+    *ptr1 = 10;
+}
 
+int main(int argc, char* argv[]) {
+    //gc_init(&argc);
+    
+    test();
     int *ptr1 = gc_malloc(sizeof(int));
     if (!ptr1)
         return EXIT_FAILURE;
@@ -29,7 +38,11 @@ int main() {
     printf("Valor de ptr2: %f\n", *ptr2);
 
     // Free mem
-    gc_free();
+    //gc_free();
+    run_gc();
+
+    printf("Valor de ptr1: %d\n", *ptr1);
+    printf("Valor de ptr2: %f\n", *ptr2);
 
     return EXIT_SUCCESS;
 }

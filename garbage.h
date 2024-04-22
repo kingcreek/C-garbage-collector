@@ -15,22 +15,33 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
+# include <unistd.h>
+# include <sys/resource.h>
 
 typedef struct s_Node {
 	void			*ptr;
 	int				size;
+	bool			marked;
 	struct s_Node	*next;
 }	t_Node;
 
 typedef struct s_GarbageCollector{
 	t_Node	*head;
+	void	*stack_bottom;
 }	t_GarbageCollector;
 
-// Functions
-void				*gc_malloc(size_t size);
+// Internal functions
 t_Node				*create_node(void *ptr, int size);
 t_GarbageCollector	*get_gb(void);
-void				gc_init(void);
-void				gc_free(void);
+void				*get_stack_start_address();
+void				mark_address(void *ptr);
+void				run_gc();
+void				*get_stack_bottom(void);
+
+// Functions
+void				gc_init(void *);
+void				*gc_malloc(size_t size);
+//void				gc_free(void);
 
 #endif
