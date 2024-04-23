@@ -6,7 +6,7 @@
 /*   By: imurugar <imurugar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 02:06:11 by imurugar          #+#    #+#             */
-/*   Updated: 2024/04/23 03:19:58 by imurugar         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:31:31 by imurugar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,23 @@ void	*get_stack_address(void)
 
 	stack_start = (void *)&stack_start;
 	return (stack_start);
+}
+
+void	*get_stack_bottom(void)
+{
+	void	*stack_bottom;
+	void	*tmp;
+	void	*tmp_value;
+
+	tmp = (void *)&tmp;
+	if (tmp == NULL)
+		return (NULL);
+	tmp_value = *(char **)tmp;
+	while (tmp_value == tmp)
+	{
+		tmp = (char *)tmp + sizeof(void *);
+		tmp_value = *(char **)tmp;
+	}
+	stack_bottom = (char *)tmp - sizeof(void *);
+	return (stack_bottom);
 }

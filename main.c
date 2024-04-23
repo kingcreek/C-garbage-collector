@@ -41,6 +41,7 @@ int	main(int argc, char *argv[])
 	float	*ptr2;
 	int		*test_val;
 
+	//gc_init();
 	printf("Call forced leak\n");
 	test();
 	printf("Call malloc 1\n");
@@ -65,5 +66,6 @@ int	main(int argc, char *argv[])
 	printf("ptr1 %p value: %d\n", ptr1, *ptr1);
 	printf("ptr2 %p value: %f\n", ptr2, *ptr2);
 	printf("test_val value: %d\n", *test_val);
+	//gc_end();
 	return (EXIT_SUCCESS);
 }

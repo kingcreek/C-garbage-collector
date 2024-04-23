@@ -28,7 +28,3 @@ This project provides a garbage collector designed specifically for 42 projects.
 ## Developers
 
 This project was developed by **vpeinado** and **imurugar** from 42 Madrid.
-
----
-
-Feel free to modify and customize this garbage collector to suit your project's needs. If you encounter any issues or have suggestions for improvements, please don't hesitate to reach out to the developers. Happy coding!

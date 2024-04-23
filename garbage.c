@@ -12,18 +12,26 @@
 
 #include "garbage.h"
 
+// Not sure if __attribute__ is allowed because it's not c standard
 void __attribute__ ((constructor))	gc_init(void)
 {
-	void	*stack_bottom;
-
 	get_gb()->head = NULL;
-	stack_bottom = &stack_bottom;
-	get_gb()->stack_bottom = stack_bottom;
+	get_gb()->stack_bottom = get_stack_bottom();
 	if (DEBUG == true)
 		printf("GC initialized, stack base: %p\n", get_gb()->stack_bottom);
 }
 
-void __attribute__ ((destructor))	gc_free(void)
+// void	gc_init(void)
+// {
+// 	void	*stack_bottom;
+
+// 	get_gb()->stack_bottom = stack_bottom + (sizeof(void *) * 100);
+// 	get_gb()->head = NULL;
+// 	if (DEBUG == true)
+// 		printf("GC initialized, stack base: %p\n", get_gb()->stack_bottom);
+// }
+void __attribute__ ((destructor))	gc_exit(void)
+// void	gc_end(void)
 {
 	t_Node	*temp;
 
