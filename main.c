@@ -5,44 +5,61 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: imurugar <imurugar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 09:53:24 by imurugar          #+#    #+#             */
-/*   Updated: 2024/04/21 10:52:48 by imurugar         ###   ########.fr       */
+/*   Created: 2024/04/23 02:21:46 by imurugar          #+#    #+#             */
+/*   Updated: 2024/04/23 02:21:46 by imurugar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "garbage.h"
 
-void test()
+void	test(void)
 {
-    int *ptr1 = gc_malloc(sizeof(int));
-    if (!ptr1)
-        return;
-    *ptr1 = 10;
+	int	*ptr1;
+
+	ptr1 = gc_malloc(sizeof(int));
+	if (!ptr1)
+		return ;
+	printf("memory allocated in test: %p\n", ptr1);
+	*ptr1 = 10;
 }
 
-int main(int argc, char* argv[]) {
-    //gc_init(&argc);
-    
-    test();
-    int *ptr1 = gc_malloc(sizeof(int));
-    if (!ptr1)
-        return EXIT_FAILURE;
-    *ptr1 = 10;
+int	*test2(void)
+{
+	int	*ptr1;
 
-    float *ptr2 = gc_malloc(sizeof(float));
-    if (!ptr2)
-        return EXIT_FAILURE;
-    *ptr2 = 3.14;
+	ptr1 = gc_malloc(sizeof(int));
+	if (!ptr1)
+		return NULL;
+	printf("memory allocated in test2: %p\n", ptr1);
+	*ptr1 = 4242;
+	return (ptr1);
+}
 
-    printf("Valor de ptr1: %d\n", *ptr1);
-    printf("Valor de ptr2: %f\n", *ptr2);
-
-    // Free mem
-    //gc_free();
-    run_gc();
-
-    printf("Valor de ptr1: %d\n", *ptr1);
-    printf("Valor de ptr2: %f\n", *ptr2);
-
-    return EXIT_SUCCESS;
+int	main(int argc, char *argv[])
+{
+	int		*ptr1;
+	float	*ptr2;
+	int		*test_val;
+	
+	printf("Call forced leak\n");
+	test();
+	ptr1 = gc_malloc(sizeof(int));
+	if (!ptr1)
+		return (EXIT_FAILURE);
+	*ptr1 = 10;
+	ptr2 = gc_malloc(sizeof(float));
+	if (!ptr2)
+		return (EXIT_FAILURE);
+	*ptr2 = 3.14;
+	test_val = test2();
+	printf("ptr1 value: %d\n", *ptr1);
+	printf("ptr2 value: %f\n", *ptr2);
+	printf("test_val value: %d\n", *test_val);
+	printf("Running gforced garbage collector\n");
+	gc_garbage();
+	printf("Running gforced garbage collector\n");
+	printf("ptr1 value: %d\n", *ptr1);
+	printf("ptr2 value: %f\n", *ptr2);
+	printf("test_val value: %d\n", *test_val);
+	return (EXIT_SUCCESS);
 }

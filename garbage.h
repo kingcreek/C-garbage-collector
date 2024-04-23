@@ -34,13 +34,15 @@ typedef struct s_GarbageCollector{
 // Internal functions
 t_Node				*create_node(void *ptr, int size);
 t_GarbageCollector	*get_gb(void);
-void				*get_stack_start_address();
+void				*get_stack_start_address(void);
 void				mark_address(void *ptr);
-void				run_gc();
 void				*get_stack_bottom(void);
+void				*get_stack_address(void);
+void				mark_from_stack(void);
 
 // Functions
-void				gc_init(void *);
+void				gc_garbage(void);
+//void				gc_init(void);
 void				*gc_malloc(size_t size);
 //void				gc_free(void);
 
