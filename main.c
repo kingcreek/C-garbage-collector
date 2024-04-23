@@ -43,23 +43,25 @@ int	main(int argc, char *argv[])
 	
 	printf("Call forced leak\n");
 	test();
+	printf("Call malloc 1\n");
 	ptr1 = gc_malloc(sizeof(int));
 	if (!ptr1)
 		return (EXIT_FAILURE);
 	*ptr1 = 10;
+	printf("Call malloc 2\n");
 	ptr2 = gc_malloc(sizeof(float));
 	if (!ptr2)
 		return (EXIT_FAILURE);
 	*ptr2 = 3.14;
 	test_val = test2();
-	printf("ptr1 value: %d\n", *ptr1);
-	printf("ptr2 value: %f\n", *ptr2);
+	printf("ptr1 %p value: %d\n", ptr1, *ptr1);
+	printf("ptr2 %p value: %f\n", ptr2, *ptr2);
 	printf("test_val value: %d\n", *test_val);
 	printf("Running gforced garbage collector\n");
 	gc_garbage();
 	printf("Running gforced garbage collector\n");
-	printf("ptr1 value: %d\n", *ptr1);
-	printf("ptr2 value: %f\n", *ptr2);
+	printf("ptr1 %p value: %d\n", ptr1, *ptr1);
+	printf("ptr2 %p value: %f\n", ptr2, *ptr2);
 	printf("test_val value: %d\n", *test_val);
 	return (EXIT_SUCCESS);
 }

@@ -40,6 +40,7 @@ void	*gc_malloc(size_t size)
 	void	*ptr;
 	t_Node	*node;
 
+	gc_garbage();
 	ptr = malloc(size);
 	if (ptr == NULL)
 		return (NULL);
@@ -48,6 +49,5 @@ void	*gc_malloc(size_t size)
 		return (NULL);
 	node->next = get_gb()->head;
 	get_gb()->head = node;
-	gc_garbage();
 	return (ptr);
 }

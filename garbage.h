@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <sys/resource.h>
 
+# define DEBUG true
+
 typedef struct s_Node {
 	void			*ptr;
 	int				size;

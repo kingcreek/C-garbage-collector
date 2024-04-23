@@ -3,6 +3,7 @@
 		"limits.h": "c",
 		"stdlib.h": "c",
 		"resource.h": "c",
-		"stdbool.h": "c"
+		"stdbool.h": "c",
+		"unistd.h": "c"
 	}
 }

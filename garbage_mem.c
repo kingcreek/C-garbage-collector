@@ -6,7 +6,7 @@
 /*   By: imurugar <imurugar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 02:26:49 by imurugar          #+#    #+#             */
-/*   Updated: 2024/04/23 02:45:31 by imurugar         ###   ########.fr       */
+/*   Updated: 2024/04/23 02:55:04 by imurugar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static void	sweep_process(t_Node **current, t_Node **prev)
 	
 	temp = (*current);
 	(*current) = (*current)->next;
+	if (DEBUG == true)
+		printf("free unreached memory: %p\n", temp->ptr);
 	free(temp->ptr);
 	temp->ptr = NULL;
 	free(temp);
