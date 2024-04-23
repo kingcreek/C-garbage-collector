@@ -6,7 +6,7 @@
 /*   By: imurugar <imurugar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 02:06:11 by imurugar          #+#    #+#             */
-/*   Updated: 2024/04/23 02:31:00 by imurugar         ###   ########.fr       */
+/*   Updated: 2024/04/23 03:19:58 by imurugar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,6 @@ t_GarbageCollector	*get_gb(void)
 	static t_GarbageCollector	gc = {0};
 
 	return (&gc);
-}
-
-void	*get_stack_bottom(void)
-{
-	static void	*stack_bottom = NULL;
-
-	return (stack_bottom);
 }
 
 void	*get_stack_address(void)

@@ -6,7 +6,7 @@
 /*   By: imurugar <imurugar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 02:26:49 by imurugar          #+#    #+#             */
-/*   Updated: 2024/04/23 02:55:04 by imurugar         ###   ########.fr       */
+/*   Updated: 2024/04/23 03:07:51 by imurugar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,24 @@ void	mark_address(void *ptr)
 void	mark_from_stack(void)
 {
 	void	*ptr_on_stack;
-	void	*stack_ptr;
 	void	*stack_start;
 	void	*stack_end;
 
 	stack_start = get_stack_address();
 	stack_end = get_gb()->stack_bottom;
-	stack_ptr = &stack_start;
-	while (stack_ptr <= stack_end)
+	while (stack_start <= stack_end)
 	{
-		ptr_on_stack = *(void **)stack_ptr;
+		ptr_on_stack = *(void **)stack_start;
 		if (ptr_on_stack != NULL)
 			mark_address(ptr_on_stack);
-		stack_ptr += sizeof(void *);
+		stack_start += sizeof(void *);
 	}
 }
 
 static void	sweep_process(t_Node **current, t_Node **prev)
 {
 	t_Node	*temp;
-	
+
 	temp = (*current);
 	(*current) = (*current)->next;
 	if (DEBUG == true)

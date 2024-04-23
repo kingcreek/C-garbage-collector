@@ -29,7 +29,7 @@ int	*test2(void)
 
 	ptr1 = gc_malloc(sizeof(int));
 	if (!ptr1)
-		return NULL;
+		return (NULL);
 	printf("memory allocated in test2: %p\n", ptr1);
 	*ptr1 = 4242;
 	return (ptr1);
@@ -40,7 +40,7 @@ int	main(int argc, char *argv[])
 	int		*ptr1;
 	float	*ptr2;
 	int		*test_val;
-	
+
 	printf("Call forced leak\n");
 	test();
 	printf("Call malloc 1\n");

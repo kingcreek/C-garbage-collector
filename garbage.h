@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <sys/resource.h>
 
-# define DEBUG true
+# define DEBUG 1
 
 typedef struct s_Node {
 	void			*ptr;
@@ -38,7 +38,6 @@ t_Node				*create_node(void *ptr, int size);
 t_GarbageCollector	*get_gb(void);
 void				*get_stack_start_address(void);
 void				mark_address(void *ptr);
-void				*get_stack_bottom(void);
 void				*get_stack_address(void);
 void				mark_from_stack(void);
 
