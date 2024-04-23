@@ -58,7 +58,9 @@ int	main(int argc, char *argv[])
 	printf("ptr2 %p value: %f\n", ptr2, *ptr2);
 	printf("test_val value: %d\n", *test_val);
 	printf("Running gforced garbage collector\n");
+	test();
 	gc_garbage();
+	test();
 	printf("Running gforced garbage collector\n");
 	printf("ptr1 %p value: %d\n", ptr1, *ptr1);
 	printf("ptr2 %p value: %f\n", ptr2, *ptr2);

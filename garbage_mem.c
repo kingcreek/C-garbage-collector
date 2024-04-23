@@ -6,7 +6,7 @@
 /*   By: imurugar <imurugar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 02:26:49 by imurugar          #+#    #+#             */
-/*   Updated: 2024/04/23 03:07:51 by imurugar         ###   ########.fr       */
+/*   Updated: 2024/04/23 03:35:57 by imurugar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	mark_from_stack(void)
 
 	stack_start = get_stack_address();
 	stack_end = get_gb()->stack_bottom;
+	if (DEBUG == true)
+		printf("cheking from stack %p to %p\n", stack_start, stack_end);
 	while (stack_start <= stack_end)
 	{
 		ptr_on_stack = *(void **)stack_start;
